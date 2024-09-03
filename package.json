@@ -1,7 +1,6 @@
 {
   "name": "node.js-hw-mongodb",
   "version": "1.0.0",
-  "description": "",
   "type": "module",
   "main": "src/index.js",
   "scripts": {
@@ -23,5 +22,6 @@
     "express": "^4.19.2",
     "pino-http": "^10.3.0",
     "pino-pretty": "^11.2.2"
-  }
+  },
+  "description": ""
 }

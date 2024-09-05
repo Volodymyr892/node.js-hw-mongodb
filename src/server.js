@@ -22,11 +22,12 @@ export const setupServer = ()=> {
             })
         );
     
-    app.get("/", (reg, res)=>{
-        res.json({
-            message: 'Hello world!',
-        }); 
-    });
+    // app.get("/", (reg, res)=>{
+    //     res.json({
+    //         message: 'Hello world!',
+    //     }); 
+    // });
+
     app.get("/contacts", async( reg, res)=>{
         const contacts = await getAllContacts();
         res.status(200).json({

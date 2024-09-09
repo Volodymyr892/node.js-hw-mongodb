@@ -51,9 +51,8 @@ export const upsertContactController = async(req,res, next)=>{
 
     const result = await updateContact(Id,req.body, {
         upsert: true,
-      });
+        });
     
-      
     if(!result){
         next(createHttpError(404, 'Contact not found'));
         return;

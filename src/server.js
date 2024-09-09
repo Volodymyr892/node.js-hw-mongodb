@@ -13,13 +13,16 @@ export const setupServer = ()=> {
 
     app.use(logger);
     app.use(cors());
-    app.use(express.json());
+    app.use(express.json({
+        type: ['application/json', 'application/vnd.api+json'],
+        limit: '100kb',
+    }));
 
     app.use(contactsRouter);
 
     app.use('*', notEoundHandler);
     app.use(errorHandler);
-    
+
     app.listen(PORT, ()=> {
         console.log(`Server is running on port ${PORT}`);
     });

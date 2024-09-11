@@ -1,5 +1,13 @@
-export const notEoundHandler = (reg,res,next)=> {
+// export const notEoundHandler = (reg,res,next)=> {
+//     res.status(404).json({
+//         status,
+//         message: 'Not found'
+//     });
+// };
+export const notFoundHandler = (req, res, next) => {
     res.status(404).json({
-        message: 'Not found'
+        status: 404,  
+        message: 'Not found',  
+        data: null,  
     });
 };

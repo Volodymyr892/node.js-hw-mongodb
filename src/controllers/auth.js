@@ -11,7 +11,7 @@ export const registerUserController = async (req, res)=>{
     });
 };
 
-export const loginUserController = async(req, res)=>{
+ export const loginUserController = async(req, res)=>{
     await loginUser(req.body);
 
     res.cookie('refreshToken', session.refreshToken, {

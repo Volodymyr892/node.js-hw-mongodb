@@ -1,10 +1,11 @@
 import express from "express";
 import cors from "cors";
-import contactsRouter from "./routes/contacts.js";
+import router from "./routes/index.js";
 import logger from "./middlewares/logger.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { notFoundHandler } from "./middlewares/notFoundHandler.js";
 import { env } from './utils/env.js';
+import cookieParser from "cookie-parser";
 
 const PORT = Number(env('PORT', '4000'));
 
@@ -13,12 +14,13 @@ export const setupServer = ()=> {
 
     app.use(logger);
     app.use(cors());
+    app.use(cookieParser());
     app.use(express.json({
         type: ['application/json', 'application/vnd.api+json'],
         limit: '100kb',
     }));
 
-    app.use(contactsRouter);
+    app.use(router);
 
     app.use('*', notFoundHandler);
     app.use(errorHandler);

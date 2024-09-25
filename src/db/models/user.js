@@ -15,11 +15,18 @@ const userSchema = new Schema(
         password:{
             type: String,
             required: true,
+            select: false,
         }
     }, 
     {
         timestamps: true,
         versionKey: false,
+        toJSON: {
+            transform(doc, ret) {
+                delete ret.password;
+                return ret;
+            },
+        },
       },
 );
 

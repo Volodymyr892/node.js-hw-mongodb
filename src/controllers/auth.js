@@ -7,7 +7,7 @@ export const registerUserController = async (req, res)=>{
     res.status(201).json({
         status: 201,
         message: "Successfully registered a user!",
-        data: user,
+        data: user.toJSON(),
     });
 };
 
@@ -22,8 +22,8 @@ export const registerUserController = async (req, res)=>{
         httpOnly: true,
         expires: new Date(Date.now()+ONE_DAY),
     }); 
-    res.status(201).json({
-        status:201,
+    res.status(200).json({
+        status:200,
         message: 'Successfully logged in an user!',
         data: {
             accessToken: session.accessToken,

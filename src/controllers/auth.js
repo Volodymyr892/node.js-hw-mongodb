@@ -2,6 +2,7 @@ import { loginUser, logoutUser, refreshUserSession, registerUser } from "../serv
 import { ONE_DAY } from "../constans/index.js";
 
 export const registerUserController = async (req, res)=>{
+    console.log(req.body);
     const user = await registerUser(req.body);
 
     res.status(201).json({

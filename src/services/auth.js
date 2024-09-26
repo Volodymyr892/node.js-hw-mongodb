@@ -26,10 +26,17 @@ export const loginUser = async(payload)=> {
     if(!user){
         throw createHttpError(404,'User not found');
     };
+    if (!payload.password) {
+        throw createHttpError(400, 'Password is required');
+    }
 
     await SessionsCollections.deleteOne({userId:user._id});
 
+    console.log('User password from DB:', user.password);
+    console.log('Password from request:', payload.password);
+
     const isEqual = await bcrypt.compare(payload.password, user.password);
+
 
     if(!isEqual) {
         throw createHttpError(401,'Unauthorized' );

@@ -17,7 +17,7 @@ router.get("/:Id",
     isValidId,
     ctrlWrapper(getContactByIdController));
 
-router.post("/register",
+router.post("/",
     validateBody(createStudentSchema),
     ctrlWrapper(createContactController));
 

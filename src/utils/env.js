@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 
 dotenv.config();
+console.log(process.env.SMTP_HOST); 
 
 export function env(name, defaultValue) {
     const value = process.env[name];

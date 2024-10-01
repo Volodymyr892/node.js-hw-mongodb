@@ -6,9 +6,13 @@ import fs from 'node:fs/promises';
 cloudinary.v2.config({
     secure: true,
     cloud_name: env(CLOUDINARY.CLOUD_NAME),
-    api_kay: env(CLOUDINARY.API_KEY),
+    api_key: env(CLOUDINARY.API_KEY),
     api_secret: env(CLOUDINARY.API_SECRET),
 });
+console.log('Cloudinary Config:');
+console.log('Cloud Name:', env(CLOUDINARY.CLOUD_NAME));
+console.log('API Key:', env(CLOUDINARY.API_KEY));
+console.log('API Secret:', env(CLOUDINARY.API_SECRET));
 
 export const saveFileToCloudinary = async(file)=>{
     const response = await

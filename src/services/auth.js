@@ -67,8 +67,6 @@ export const logoutUser  = async(sessionId)=>{
     console.log('Session delete result:', result);
 };
 
-
-
 const createSession = ()=>{
     const accessToken =  randomBytes(30).toString('base64');
     const refreshToken = randomBytes(30).toString('base64');

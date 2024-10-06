@@ -12,6 +12,7 @@ import { FIFTEEN_MINUTES, ONE_DAY, TEMPLATES_DIR } from "../constans/index.js";
 import { SMTP } from "../constans/index.js";
 import { env }from "../utils/env.js";
 import { sendMail } from "../utils/sendMail.js";
+import { getFullNameFromGoogleTokenPayload, validateBody } from "../utils/googleOAuth2.js";
 
 export const registerUser = async(payload)=>{
     const user = await UserCollection.findOne({
@@ -167,4 +168,30 @@ export const resetPassword = async (payload)=>{
         {_id: user._id},
         {password:encryptedPassword}
     );
+};
+
+export const loginOrSignupWithGoogle = async(code)=>{
+    const loginTicket = validateBody(code);
+    const payload = loginTicket.getPayload();
+
+    if(!payload) throw createHttpError(401);
+
+    let user = await UserCollection.findOne({
+        email:payload.email,
+    });
+
+    if(!user){
+        const password = await bcrypt.hash(randomBytes(10), 10);
+        user = await UserCollection.create({
+            email: payload.email,
+            name: getFullNameFromGoogleTokenPayload(payload), password,
+            role: 'parent',
+        });
+    }
+    const newSession = createHttpError();
+
+    return await SessionsCollections.create({
+        userId:user._id,
+        ...newSession
+    });
 };

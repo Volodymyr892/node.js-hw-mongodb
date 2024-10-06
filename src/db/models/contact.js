@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
 import { generList } from "../../constans/contacts.js";
-// import { required } from "joi";
+
 const contactsSchema = new Schema(
     {
         name:{

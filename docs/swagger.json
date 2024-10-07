@@ -63,7 +63,7 @@
             "name": "sortBy",
             "schema": {
               "type": "string",
-              "example": "age"
+              "example": "isFavourite, contactType"
             },
             "description": "All Contacts fields can be mentioned. Default value - _id"
           },
@@ -221,12 +221,6 @@
                       "home",
                       "personal"
                     ]
-                  },
-                  "photo": {
-                    "description": "Link to movie's poster",
-                    "type": "string",
-                    "format": "url",
-                    "example": "https://res.cloudinary.com/uqwgdu/image/upload/image.png"
                   }
                 }
               }
@@ -354,7 +348,7 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "type": "object",
                 "properties": {
